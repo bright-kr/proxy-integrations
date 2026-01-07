@@ -1,26 +1,21 @@
 # Proxy Integrations
 
 
-If you're like most web developers and scraping experts, you've probably used <b>Selenium</B> or an equivalent browser automation tool for one of your projects. These 
-are powerful testing and web page interaction tools but in most cases they require a proper <b>proxy IP integration</b> to successfully complete certain job types 
-without getting blocked.
-There are 2 options for proxy integrations — the first is integrating directly with [Bright Data super proxies](https://brightdata.com/proxy-types/proxy-servers) 
-and the second is through the Bright Data [proxy manager](https://github.com/luminati-io/luminati-proxy).
+대부분의 웹 개발자 및 スクレイピング 전문가와 마찬가지로, 프로젝트 중 하나에서 <b>Selenium</B> 또는 동등한 브라우저 자동화 도구를 사용해 보셨을 것입니다. 이러한 도구는 강력한 테스트 및 웹 페이지 상호작용 도구이지만, 대부분의 경우 차단되지 않고 특정 작업 유형을 성공적으로 완료하려면 적절한 <b>プロキシ IP 통합</b>이 필요합니다.  
+プロキシ 통합에는 2가지 옵션이 있습니다. 첫 번째는 [Bright Data super proxies](https://brightdata.co.kr/proxy-types/proxy-servers)와 직접 통합하는 것이고, 두 번째는 Bright Data [proxy manager](https://github.com/luminati-io/luminati-proxy)를 통해 통합하는 것입니다.
 
 ![Bright Data Proxy Manager](https://github.com/luminati-io/proxy-integrations/blob/main/Proxy%20Manager.png)
 
 <h2>Selenium proxy integration</h2>
 
-[Selenium](https://github.com/SeleniumHQ/selenium) web driver is a popular browser automation tool among Python coders that may be used to create realistic
-browsing situations for the most precise website testing as well as web scraping that emulates a real-user's interaction with the web page.
-<h3>To integrate Selenium with Bright Data super proxies, follow these steps:</h3>
+[Selenium](https://github.com/SeleniumHQ/selenium) 웹 드라이버는 Python 코더들 사이에서 인기 있는 브라우저 자동화 도구로, 가장 정밀한 웹사이트 테스트를 위한 현실적인 브라우징 상황을 만들고, 실제 사용자의 웹 페이지 상호작용을 에뮬레이션하는 Webスクレイピング에도 사용할 수 있습니다.
+<h3>Selenium을 Bright Data super proxies와 통합하려면 다음 단계를 따르십시오:</h3>
 
-* First, access your Bright Data [control panel](https://brightdata.com/cp/zones) and click ‘<b>add zone</b>’.
-* Select your preferred network type - Datacenter, ISP, Residential, Mobile, etc.  and click '<b>add zone</b>' again.
-* In Selenium web driver, fill in the ```Proxy IP:Port``` in the ```setProxy``` function for example ```zproxy.lum-superproxy.io:22225``` of both HTTP and HTTPS.
-* Under ```sendKeys``` input your Bright Data account ID and proxy zone name:```lum-customer-CUSTOMER-zone-YOURZONE``` and your zone password found in the proxy zone 
-* settings.
-* Here is an example of what your code should look like:
+* 먼저 Bright Data [control panel](https://brightdata.co.kr/cp/zones)에 접속한 후 ‘<b>add zone</b>’을 클릭합니다.
+* 선호하는 네트워크 유형 - Datacenter, ISP, Residential, Mobile 등 - 을 선택한 다음 '<b>add zone</b>'을 다시 클릭합니다.
+* Selenium 웹 드라이버에서 ```setProxy``` 함수에 HTTP 및 HTTPS 모두에 대해 ```Proxy IP:Port```를 입력합니다. 예: ```zproxy.lum-superproxy.io:22225```.
+* ```sendKeys``` 아래에 Bright Data account ID와 proxy zone name을 입력합니다:```lum-customer-CUSTOMER-zone-YOURZONE``` 그리고 proxy zone 설정에서 찾을 수 있는 zone password를 입력합니다.
+* 코드는 다음과 같은 형태여야 합니다:
 
 ```s
 const {Builder, By, Key, until} = require('selenium-webdriver');
@@ -42,16 +37,16 @@ const proxy = require('selenium-webdriver/proxy');
   }
 })();
 ```
-<h3>To integrate Selenium with Bright Data proxy manager, follow these steps:</h3>
+<h3>Selenium을 Bright Data proxy manager와 통합하려면 다음 단계를 따르십시오:</h3>
 
-* Create a proxy zone with the network, IP type, and number of IPs you require.
-* [Install](https://brightdata.com/products/proxy-manager) the Bright Data Proxy Manager on your machine or access it via cloud on your Bright Data control panel.
-* Click the <b>‘add new proxy’</b> option and choose the zone and settings you require for it, then click <b>‘save’</b>.
-* Go to Selenium web driver.  Under the setProxy type in your local IP and proxy manager port (i.e. 127.0.0.1:24000).
-* The local host IP is 127.0.0.1.
-* The port that is created in the Proxy Manager is in the format 24XXX, for example 24000.
-* Don't type username and password into the fields — the Bright Data Proxy Manager is already authenticated with the Super Proxy server.
-* Here is an example how your Selenium code should look like:
+* 필요한 네트워크, IP 유형, IP 수로 proxy zone을 생성합니다.
+* 사용자 장치에 Bright Data Proxy Manager를 [Install](https://brightdata.co.kr/products/proxy-manager)하거나, Bright Data control panel에서 클라우드를 통해 액세스합니다.
+* <b>‘add new proxy’</b> 옵션을 클릭하고 필요한 zone 및 설정을 선택한 다음 <b>‘save’</b>를 클릭합니다.
+* Selenium 웹 드라이버로 이동합니다. setProxy에서 로컬 IP와 proxy manager port(예: 127.0.0.1:24000)를 입력합니다.
+* 로컬 호스트 IP는 127.0.0.1입니다.
+* Proxy Manager에서 생성되는 포트는 24XXX 형식이며, 예를 들어 24000입니다.
+* 필드에 username과 password를 입력하지 마십시오 — Bright Data Proxy Manager는 Super Proxy server에 이미 인증되어 있습니다.
+* Selenium 코드는 다음과 같은 형태여야 합니다:
 
 ```s
 const {Builder, By, Key, until} = require('selenium-webdriver');
@@ -72,22 +67,20 @@ const proxy = require('selenium-webdriver/proxy');
 })();
 ```
 
-Start using the <b>[Selenium proxy integration here](https://brightdata.com/integration/selenium)</b>.
+<b>[여기에서 Selenium proxy integration을 시작하십시오](https://brightdata.co.kr/integration/selenium)</b>.
 
 
 <h2>Puppeteer proxy integration</h2>
 
-Puppeteer is a Node library created to control and automate headless and non-headless Chrome and Chromium browsers with its high-level API. Though it wasn't
-originally designed to be used as a testing platform, it has become a very popular alternative to Selenium among JavaScript users and features some additional
-[stealth extra plug-ins](https://github.com/berstend/puppeteer-extra).
+Puppeteer는 고수준 API를 통해 headless 및 non-headless Chrome과 Chromium 브라우저를 제어하고 자동화하기 위해 만들어진 Node 라이브러리입니다. 원래 테스트 플랫폼으로 설계되지는 않았지만, JavaScript 사용자들 사이에서 Selenium의 매우 인기 있는 대안이 되었으며 추가적인 [stealth extra plug-ins](https://github.com/berstend/puppeteer-extra) 기능도 제공합니다.
 
-<h3>To integrate Puppeteer with Bright Data super proxies, follow these steps:</h3>
+<h3>Puppeteer를 Bright Data super proxies와 통합하려면 다음 단계를 따르십시오:</h3>
 
-* First, access your Bright Data control panel and click <b>‘add zone’</b>.
-* Select your preferred proxy network type - Datacenter, ISP, Residential, Mobile, etc. and click <b>'add zone'</b> again.
-* Go to Puppeteer, add the ```Proxy IP:Port``` in the ```proxy-server``` value, for instance ```zproxy.lum-superproxy.io:22225``` .
-* Under the ```page.authenticate``` insert your Bright Data account ID and proxy zone name in the ```username``` value, this way: ```lum-customer-CUSTOMER-zone-YOURZONE``` and your  proxy zone password found in the proxy zone settings.
-* Here is an example how what your Puppeteer code should look like:
+* 먼저 Bright Data control panel에 접속한 후 <b>‘add zone’</b>을 클릭합니다.
+* 선호하는 プロキシ 네트워크 유형 - Datacenter, ISP, Residential, Mobile 등 - 을 선택한 다음 <b>'add zone'</b>을 다시 클릭합니다.
+* Puppeteer로 이동하여 ```proxy-server``` 값에 ```Proxy IP:Port```를 추가합니다(예: ```zproxy.lum-superproxy.io:22225```).
+* ```page.authenticate``` 아래의 ```username``` 값에 Bright Data account ID와 proxy zone name을 다음과 같이 입력합니다: ```lum-customer-CUSTOMER-zone-YOURZONE``` 그리고 proxy zone settings에서 찾을 수 있는 proxy zone password를 입력합니다.
+* Puppeteer 코드는 다음과 같은 형태여야 합니다:
 
 ```javascript
 const puppeteer = require('puppeteer');
@@ -108,16 +101,16 @@ const puppeteer = require('puppeteer');
 })();
 ```
 
-<h3>To integrate Puppeteer with Bright Data proxy manager, follow these steps:</h3>
+<h3>Puppeteer를 Bright Data proxy manager와 통합하려면 다음 단계를 따르십시오:</h3>
 
-* Access your Bright Data control panel and create a zone with the proxy network type, IP type, and number of IPs you require.
-* Install the Proxy Manager on your device or access it via the cloud on your Bright Data control panel.
-* Click <b>‘add new proxy’</b> and choose the zone and settings you require, click <b>‘save’</b>.
-* In Puppeteer, under the ```proxy-server```, insert your local IP and Bright Data Proxy Manager port (i.e. 127.0.0.1:24000).
-* The local host IP is 127.0.0.1
-* The port created by default in the Bright Data Proxy Manager is in the format 24XXX, e.g., 24000.
-* Don't type username and password into the fields — the Bright Data Proxy Manager is already authenticated with the Super Proxy server.
-* Here is an example how what your Puppeteer code should look like:
+* Bright Data control panel에 접속하여 필요한 プロキシ 네트워크 유형, IP 유형, IP 수로 zone을 생성합니다.
+* 장치에 Proxy Manager를 설치하거나 Bright Data control panel에서 클라우드를 통해 액세스합니다.
+* <b>‘add new proxy’</b>를 클릭하고 필요한 zone과 설정을 선택한 다음 <b>‘save’</b>를 클릭합니다.
+* Puppeteer에서 ```proxy-server``` 아래에 로컬 IP와 Bright Data Proxy Manager 포트(예: 127.0.0.1:24000)를 입력합니다.
+* 로컬 호스트 IP는 127.0.0.1입니다.
+* Bright Data Proxy Manager에서 기본으로 생성되는 포트는 24XXX 형식이며, 예: 24000입니다.
+* 필드에 username과 password를 입력하지 마십시오 — Bright Data Proxy Manager는 Super Proxy server에 이미 인증되어 있습니다.
+* Puppeteer 코드는 다음과 같은 형태여야 합니다:
 
 ```javascript
 const puppeteer = require('puppeteer');
@@ -135,22 +128,20 @@ const puppeteer = require('puppeteer');
 })();
 ```
 
-Start using the Bright Data <b>[Puppeteer proxy integration here](https://brightdata.com/integration/puppeteer)</b>.
+Bright Data <b>[Puppeteer proxy integration을 여기에서 시작하십시오](https://brightdata.co.kr/integration/puppeteer)</b>.
 
 
 <h2>Playwright proxy integration</h2>
 
-Playwright is a Node.js library that allows Chromium, Firefox, and WebKit automation using a single API. Here are the steps for a quick Playwright proxy Integration 
-with Bright Data.
+Playwright는 단일 API를 사용하여 Chromium, Firefox, WebKit 자동화를 가능하게 하는 Node.js 라이브러리입니다. 다음은 Bright Data와 함께하는 빠른 Playwright proxy Integration 단계입니다. 
 
-<h3>To integrate Playwright with Bright Data super proxies, follow these steps:</h3>
+<h3>Playwright를 Bright Data super proxies와 통합하려면 다음 단계를 따르십시오:</h3>
 
-* First, access your Bright Data control panel and click <b>‘add a zone’</b>.
-* Select your preferred proxy network type - Datacenter, ISP, Residential, Mobile, etc. and click <b>'add zone'</b> again.
-* Go to Playwright and insert the ```Proxy IP:Port``` in the ```server``` value, for example ```http://zproxy.lum-superproxy.io:22225``` .
-* Under ```username``` type in your Bright Data account ID and proxy zone name, for example:```lum-customer-CUSTOMER-zone-YOURZONE``` and under ```password``` type in 
-your zone password found in the Bright data proxy zone settings.
-* Here is an example how what your Playwright code should look like:
+* 먼저 Bright Data control panel에 접속한 후 <b>‘add a zone’</b>을 클릭합니다.
+* 선호하는 プロキシ 네트워크 유형 - Datacenter, ISP, Residential, Mobile 등 - 을 선택한 다음 <b>'add zone'</b>을 다시 클릭합니다.
+* Playwright로 이동하여 ```server``` 값에 ```Proxy IP:Port```를 입력합니다. 예: ```http://zproxy.lum-superproxy.io:22225``` .
+* ```username``` 아래에 Bright Data account ID와 proxy zone name을 입력합니다(예:```lum-customer-CUSTOMER-zone-YOURZONE```). 그리고 ```password``` 아래에 Bright data proxy zone settings에서 찾을 수 있는 zone password를 입력합니다.
+* Playwright 코드는 다음과 같은 형태여야 합니다:
 
 ```javascript
 const playwright = require('playwright');
@@ -174,16 +165,16 @@ const playwright = require('playwright');
 })();
 ```
 
-<h3>To integrate Playwright with Bright Data proxy manager, follow these steps:</h3>
+<h3>Playwright를 Bright Data proxy manager와 통합하려면 다음 단계를 따르십시오:</h3>
 
-* Access your Bright Data control panel and create a zone with the proxy network type, IP type, and number of IPs you require.
-* Install the Proxy Manager on your device or access it via the cloud on your Bright Data control panel.
-* Click <b>‘add new proxy’</b> and choose the zone and settings you require, click <b>‘save’</b>.
-* In Playwright, under the ```server```, insert your local IP and Bright Data Proxy Manager port (i.e. 127.0.0.1:24000).
-* The local host IP is 127.0.0.1.
-* The port created by default in the Bright Data Proxy Manager is in the format 24XXX, e.g., 24000.
-* Don't type username and password into the fields — the Bright Data Proxy Manager is already authenticated with the Super Proxy server.
-* Here is an example of what your Playwright code should look like:
+* Bright Data control panel에 접속하여 필요한 プロキシ 네트워크 유형, IP 유형, IP 수로 zone을 생성합니다.
+* 장치에 Proxy Manager를 설치하거나 Bright Data control panel에서 클라우드를 통해 액세스합니다.
+* <b>‘add new proxy’</b>를 클릭하고 필요한 zone과 설정을 선택한 다음 <b>‘save’</b>를 클릭합니다.
+* Playwright에서 ```server``` 아래에 로컬 IP와 Bright Data Proxy Manager 포트(예: 127.0.0.1:24000)를 입력합니다.
+* 로컬 호스트 IP는 127.0.0.1입니다.
+* Bright Data Proxy Manager에서 기본으로 생성되는 포트는 24XXX 형식이며, 예: 24000입니다.
+* 필드에 username과 password를 입력하지 마십시오 — Bright Data Proxy Manager는 Super Proxy server에 이미 인증되어 있습니다.
+* Playwright 코드는 다음과 같은 형태여야 합니다:
 
 ```javascript
 const playwright = require('playwright');
@@ -207,15 +198,15 @@ const playwright = require('playwright');
 })();
 ```
 
-Start using the Bright Data <b>[Playwright proxy integration here](https://brightdata.com/integration/playwright)</b>.
+Bright Data <b>[Playwright proxy integration을 여기에서 시작하십시오](https://brightdata.co.kr/integration/playwright)</b>.
 
 
 <h2>Other useful Bright Data proxy integrations</h2>
 
-* PhantomBuster - watch the proxy integration tutorial video on [YouTube](https://youtu.be/Tw68CHXs_jE).
+* PhantomBuster - [YouTube](https://youtu.be/Tw68CHXs_jE)에서 proxy integration 튜토리얼 비디오를 시청하십시오.
 * Apify
 * SessionBox
 * VMLogin
 * AdsPower
 
-Go to Bright Data [proxy integrations](https://brightdata.com/integration) center to learn what's new.
+새로운 소식을 확인하려면 Bright Data [proxy integrations](https://brightdata.co.kr/integration) 센터로 이동하십시오.
