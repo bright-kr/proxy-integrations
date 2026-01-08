@@ -2,9 +2,9 @@
 
 
 대부분의 웹 개발자 및 スクレイピング 전문가와 마찬가지로, 프로젝트 중 하나에서 <b>Selenium</B> 또는 동등한 브라우저 자동화 도구를 사용해 보셨을 것입니다. 이러한 도구는 강력한 테스트 및 웹 페이지 상호작용 도구이지만, 대부분의 경우 차단되지 않고 특정 작업 유형을 성공적으로 완료하려면 적절한 <b>プロキシ IP 통합</b>이 필요합니다.  
-プロキシ 통합에는 2가지 옵션이 있습니다. 첫 번째는 [Bright Data super proxies](https://brightdata.co.kr/proxy-types/proxy-servers)와 직접 통합하는 것이고, 두 번째는 Bright Data [proxy manager](https://github.com/luminati-io/luminati-proxy)를 통해 통합하는 것입니다.
+プロキシ 통합에는 2가지 옵션이 있습니다. 첫 번째는 [Bright Data super proxies](https://brightdata.co.kr/proxy-types/proxy-servers)와 직접 통합하는 것이고, 두 번째는 Bright Data [proxy manager](https://github.com/bright-kr/luminati-proxy)를 통해 통합하는 것입니다.
 
-![Bright Data Proxy Manager](https://github.com/luminati-io/proxy-integrations/blob/main/Proxy%20Manager.png)
+![Bright Data Proxy Manager](https://github.com/bright-kr/proxy-integrations/blob/main/Proxy%20Manager.png)
 
 <h2>Selenium proxy integration</h2>
 
